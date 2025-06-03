@@ -26,11 +26,11 @@ export async function GET(
   { params }: { params: { id: string } }
 ) {
   try {
-    const id = parseInt(params.id);
+    const userId = params.id;
 
     const kostOwner = await prisma.kostOwner.findUnique({
       where: {
-        id,
+        userId,
       },
     });
 
@@ -74,12 +74,12 @@ export async function PATCH(
   { params }: { params: { id: string } }
 ) {
   try {
-    const id = parseInt(params.id);
+    const userId = params.id;
     const { fullname, noTelp, nik, alamat } = await request.json();
 
     const kostOwner = await prisma.kostOwner.update({
       where: {
-        id,
+        userId,
       },
       data: {
         fullname,
@@ -117,11 +117,11 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   try {
-    const id = parseInt(params.id);
+    const userId = params.id;
 
     await prisma.kostOwner.delete({
       where: {
-        id,
+        userId,
       },
     });
 
